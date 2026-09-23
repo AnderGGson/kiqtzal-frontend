@@ -1,0 +1,154 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout__main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.header__brand {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar__link {
+  text-decoration: none;
+}
+
+.navbar__link.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.spinner {
+  opacity: 0.75;
+}
+
+.error-banner {
+  padding: 0.75rem 1rem;
+  border: 1px solid #c0392b;
+  border-radius: 6px;
+  color: #c0392b;
+  background: #fdf0ef;
+}
+
+.empty-state {
+  padding: 1.5rem;
+  border: 1px dashed #aaa;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.empty-state__title {
+  font-weight: 600;
+  margin: 0;
+}
+
+.empty-state__description {
+  opacity: 0.75;
+  margin: 0.25rem 0 0;
+}
+
+.connection-status--online {
+  color: #1e8449;
+  font-weight: 600;
+}
+
+.connection-status--offline {
+  color: #b9770e;
+  font-weight: 600;
+}
+
+.latest-card,
+.chart-placeholder,
+.experiment-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.dashboard__charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.chart-placeholder {
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.experiment-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.experiment-card__name {
+  margin: 0 0 0.25rem;
+}
+
+.measurements-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.measurements-table th,
+.measurements-table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.experiment-page h2 {
+  margin-top: 2rem;
+}
