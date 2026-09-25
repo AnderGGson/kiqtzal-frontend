@@ -6,6 +6,14 @@ export function formatNumber(value: number, digits = 2): string {
   return value.toFixed(digits)
 }
 
+export function timeLabel(iso: string): string {
+  return new Date(iso).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  })
+}
+
 export function timeAgo(iso: string): string {
   const diffMs = Date.now() - new Date(iso).getTime()
   const minutes = Math.floor(diffMs / 60_000)

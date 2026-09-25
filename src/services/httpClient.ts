@@ -1,4 +1,4 @@
-import env from '../config/env'
+import { getApiBaseUrl } from '../config/apiBaseUrl'
 import type { ApiErrorBody, ApiResult } from '../types'
 
 async function parseError(response: Response): Promise<ApiResult<never>> {
@@ -15,7 +15,7 @@ async function parseError(response: Response): Promise<ApiResult<never>> {
 
 export async function httpClient<T>(path: string, init?: RequestInit): Promise<ApiResult<T>> {
   try {
-    const response = await fetch(`${env.apiBaseUrl}${path}`, {
+    const response = await fetch(`${getApiBaseUrl()}${path}`, {
       headers: { 'Content-Type': 'application/json' },
       ...init,
     })

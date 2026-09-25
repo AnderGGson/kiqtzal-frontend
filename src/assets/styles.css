@@ -113,7 +113,7 @@ a {
 
 .dashboard__charts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1rem;
   margin: 1rem 0;
 }
@@ -123,6 +123,133 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.air-chart {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.air-chart h4 {
+  margin: 0 0 0.5rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.summary-grid--empty {
+  border: 1px dashed #aaa;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.summary-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.summary-card--dirty {
+  border-left: 4px solid #e5484d;
+}
+
+.summary-card--clean {
+  border-left: 4px solid #16a34a;
+}
+
+.summary-card--reduction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 4px solid #f59f00;
+}
+
+.summary-card h4 {
+  margin: 0 0 0.5rem;
+}
+
+.summary-card dl {
+  margin: 0;
+}
+
+.summary-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.summary-card dt {
+  opacity: 0.7;
+}
+
+.summary-card dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.summary__value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.summary__detail {
+  margin: 0.25rem 0 0;
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+
+.backend-settings {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px dashed #aaa;
+  border-radius: 6px;
+  max-width: 480px;
+}
+
+.backend-settings__form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.backend-settings__form input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.4rem 0.5rem;
+}
+
+.backend-settings__hint {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin: 0.5rem 0 0;
+}
+
+.landing__qr {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.landing__qr-hint {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  margin: 0;
+  word-break: break-all;
+}
+
+.table-scroll {
+  overflow-x: auto;
 }
 
 .experiment-list {

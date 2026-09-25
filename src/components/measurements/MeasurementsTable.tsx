@@ -10,6 +10,10 @@ interface MeasurementsTableProps {
   error: string | null
 }
 
+function valueOrDash(value: number | null, unit = ''): string {
+  return value !== null ? `${formatNumber(value)} ${unit}` : '—'
+}
+
 export function MeasurementsTable({ measurements, isLoading, error }: MeasurementsTableProps) {
   if (isLoading) return <Spinner label="Cargando mediciones..." />
   if (error) return <ErrorBanner message={error} />
@@ -23,25 +27,35 @@ export function MeasurementsTable({ measurements, isLoading, error }: Measuremen
   }
 
   return (
-    <table className="measurements-table">
-      <thead>
-        <tr>
-          <th>Hora</th>
-          <th>Gas</th>
-          <th>Humedad</th>
-          <th>Temperatura</th>
-        </tr>
-      </thead>
-      <tbody>
-        {measurements.map((measurement) => (
-          <tr key={measurement.id}>
-            <td>{formatDate(measurement.timestamp)}</td>
-            <td>{formatNumber(measurement.gas)}</td>
-            <td>{formatNumber(measurement.humidity)}</td>
-            <td>{measurement.temperature !== null ? formatNumber(measurement.temperature) : '—'}</td>
+    <div className="table-scroll">
+      <table className="measurements-table">
+        <thead>
+          <tr>
+            <th>Hora</th>
+            <th>Gas sucio</th>
+            <th>Gas limpio</th>
+            <th>Humedad</th>
+            <th>Temperatura</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {measurements.map((measurement) => (
+            <tr key={measurement.id}>
+              <td>{formatDate(measurement.timestamp)}</td>
+              <td>{formatNumber(measurement.dirtyAir.gas)}</td>
+              <td>{formatNumber(measurement.cleanAir.gas)}</td>
+              <td>
+                {formatNumber(measurement.dirtyAir.humidity)}% /{' '}
+                {formatNumber(measurement.cleanAir.humidity)}%
+              </td>
+              <td>
+                {valueOrDash(measurement.dirtyAir.temperature)} /{' '}
+                {valueOrDash(measurement.cleanAir.temperature)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }

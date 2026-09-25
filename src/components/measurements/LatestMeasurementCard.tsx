@@ -10,12 +10,21 @@ export function LatestMeasurementCard({ measurement, isLoading }: LatestMeasurem
   if (isLoading) return <div className="latest-card">Consultando última medición...</div>
   if (!measurement) return <div className="latest-card">Sin mediciones registradas</div>
 
+  const { dirtyAir, cleanAir } = measurement
+
   return (
     <div className="latest-card">
       <h3>Última medición</h3>
-      <p>Gas: {formatNumber(measurement.gas)}</p>
-      <p>Humedad: {formatNumber(measurement.humidity)}</p>
-      <p>Temperatura: {measurement.temperature !== null ? formatNumber(measurement.temperature) : 'No disponible'}</p>
+      <p>
+        Gas — sucio {formatNumber(dirtyAir.gas)} · limpio {formatNumber(cleanAir.gas)}
+      </p>
+      <p>
+        Humedad — sucia {formatNumber(dirtyAir.humidity)}% · limpia {formatNumber(cleanAir.humidity)}%
+      </p>
+      <p>
+        Temperatura — {dirtyAir.temperature !== null ? formatNumber(dirtyAir.temperature) : '—'} /{' '}
+        {cleanAir.temperature !== null ? formatNumber(cleanAir.temperature) : '—'} °C
+      </p>
       <p>Registrada: {formatDate(measurement.timestamp)}</p>
     </div>
   )
