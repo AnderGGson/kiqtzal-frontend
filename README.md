@@ -29,12 +29,13 @@ Copia `.env.example` a `.env.local` solo si necesitas cambiar algo:
 
 ```
 VITE_API_BASE_URL=https://kiqtzal-backend.vercel.app/api
-# VITE_PUBLIC_URL=https://kiqtzal-platform.vercel.app   # (opcional) dato del QR
+# VITE_PUBLIC_URL=https://kiqtzal-platform.vercel.app   # (opcional) enlace del QR
 ```
 
 - `VITE_API_BASE_URL`: base de la API, **incluyendo `/api`**. Si no se define, el código usa la
   URL de producción anterior, así que el frontend funciona sin configurar nada.
-- `VITE_PUBLIC_URL`: si está definida, el QR de la portada la apunta; si no, usa `window.location.origin`.
+- `VITE_PUBLIC_URL`: URL pública que muestra y comparte la portada. Si no se define, se usa
+  `https://kiqtzal-platform.vercel.app`.
 - Todas las variables `VITE_*` son públicas. Toda lectura de `import.meta.env` ocurre únicamente en
   `src/config/env.ts`.
 - No hay override de URL en el navegador: la única fuente es `VITE_API_BASE_URL` (o el valor por
