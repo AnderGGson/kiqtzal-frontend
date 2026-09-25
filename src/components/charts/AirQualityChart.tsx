@@ -16,10 +16,10 @@ import { QUALITY_THRESHOLDS } from '../../config/qualityThresholds'
 import { formatDate, formatNumber, timeTick } from '../../utils/format'
 import type { Measurement, MetricKey } from '../../types'
 
-const GOOD_COLOR = '#1a9c5b'
-const WARNING_COLOR = '#d99400'
-const INPUT_COLOR = '#e5484d'
-const OUTPUT_COLOR = '#2f6fed'
+const GOOD_COLOR = '#0e5a36'
+const WARNING_COLOR = '#8a6a05'
+const INPUT_COLOR = '#c0292b'
+const OUTPUT_COLOR = '#0e5a36'
 
 interface AirQualityChartProps {
   title: string

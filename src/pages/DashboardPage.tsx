@@ -28,7 +28,7 @@ export function DashboardPage() {
     <section className="dashboard">
       <div className="dashboard__header">
         <h1>Dashboard en vivo</h1>
-        <Link className="button button--secondary" to="/historial">
+        <Link className="button button--primary" to="/historial">
           Ver historial completo
         </Link>
       </div>
