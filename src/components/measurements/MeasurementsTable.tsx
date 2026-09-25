@@ -1,8 +1,11 @@
 import { EmptyState } from '../common/EmptyState'
 import { ErrorBanner } from '../common/ErrorBanner'
 import { Spinner } from '../common/Spinner'
-import { formatDate, formatNumber } from '../../utils/format'
+import { QualityDot } from './QualityTrafficLight'
+import { assessMetric, overallLevel } from '../../utils/quality'
+import { formatDate, formatValue } from '../../utils/format'
 import type { Measurement } from '../../types'
+import { ZONE_LABELS } from '../../types'
 
 interface MeasurementsTableProps {
   measurements: Measurement[] | null
@@ -10,8 +13,12 @@ interface MeasurementsTableProps {
   error: string | null
 }
 
-function valueOrDash(value: number | null, unit = ''): string {
-  return value !== null ? `${formatNumber(value)} ${unit}` : '—'
+function zoneLevel(measurement: Measurement, zone: 'entrada' | 'salida') {
+  return overallLevel([
+    assessMetric('temperature', measurement[zone].temperature).level,
+    assessMetric('humidity', measurement[zone].humidity).level,
+    assessMetric('gasRaw', measurement[zone].gasRaw).level,
+  ])
 }
 
 export function MeasurementsTable({ measurements, isLoading, error }: MeasurementsTableProps) {
@@ -31,26 +38,46 @@ export function MeasurementsTable({ measurements, isLoading, error }: Measuremen
       <table className="measurements-table">
         <thead>
           <tr>
-            <th>Hora</th>
-            <th>Gas sucio</th>
-            <th>Gas limpio</th>
-            <th>Humedad</th>
-            <th>Temperatura</th>
+            <th rowSpan={2} scope="col">
+              ID
+            </th>
+            <th rowSpan={2} scope="col">
+              Fecha y hora
+            </th>
+            <th colSpan={4} scope="colgroup">
+              {ZONE_LABELS.entrada}
+            </th>
+            <th colSpan={4} scope="colgroup">
+              {ZONE_LABELS.salida}
+            </th>
+          </tr>
+          <tr>
+            <th scope="col">Temp.</th>
+            <th scope="col">Humedad</th>
+            <th scope="col">Gas MQ</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Temp.</th>
+            <th scope="col">Humedad</th>
+            <th scope="col">Gas MQ</th>
+            <th scope="col">Estado</th>
           </tr>
         </thead>
         <tbody>
           {measurements.map((measurement) => (
             <tr key={measurement.id}>
+              <td>{measurement.id}</td>
               <td>{formatDate(measurement.timestamp)}</td>
-              <td>{formatNumber(measurement.dirtyAir.gas)}</td>
-              <td>{formatNumber(measurement.cleanAir.gas)}</td>
+              <td>{formatValue(measurement.entrada.temperature, '°C')}</td>
+              <td>{formatValue(measurement.entrada.humidity, '%')}</td>
+              <td>{formatValue(measurement.entrada.gasRaw)}</td>
               <td>
-                {formatNumber(measurement.dirtyAir.humidity)}% /{' '}
-                {formatNumber(measurement.cleanAir.humidity)}%
+                <QualityDot level={zoneLevel(measurement, 'entrada')} label="Entrada" />
               </td>
+              <td>{formatValue(measurement.salida.temperature, '°C')}</td>
+              <td>{formatValue(measurement.salida.humidity, '%')}</td>
+              <td>{formatValue(measurement.salida.gasRaw)}</td>
               <td>
-                {valueOrDash(measurement.dirtyAir.temperature)} /{' '}
-                {valueOrDash(measurement.cleanAir.temperature)}
+                <QualityDot level={zoneLevel(measurement, 'salida')} label="Salida" />
               </td>
             </tr>
           ))}

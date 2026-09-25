@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 const navLinks = [
   { to: '/', label: 'Inicio' },
   { to: '/dashboard', label: 'Dashboard' },
+  { to: '/historial', label: 'Historial' },
 ]
 
 export function Navbar() {

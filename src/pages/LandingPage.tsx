@@ -10,8 +10,8 @@ export function LandingPage() {
       <p>Sistema de monitoreo experimental para un biopurificador de aire.</p>
       <p>
         El biofiltro purifica el aire mediante capas: planta cola de quetzal, fibra de coco y
-        más. Dos pares de sensores miden la entrada (sucio) y la salida (limpio) para comparar
-        la purificación en tiempo real.
+        más. Dos pares de sensores miden la entrada (sin tratar) y la salida (tratada) para
+        comparar la purificación en tiempo real.
       </p>
       <p>Escaneá el código QR para ver las estadísticas en vivo.</p>
       <div className="landing__qr">
@@ -19,7 +19,8 @@ export function LandingPage() {
         <p className="landing__qr-hint">{publicUrl}</p>
       </div>
       <p>
-        Consulta el <a href="/dashboard">dashboard en vivo</a> y su historial.
+        Consulta el <a href="/dashboard">dashboard en vivo</a> o el{' '}
+        <a href="/historial">historial de mediciones</a>.
       </p>
     </section>
   )
